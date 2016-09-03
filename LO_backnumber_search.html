@@ -2272,7 +2272,18 @@ $( function(){
 		var table = $("#list");
 		var tr = $( "tr:eq(0)", table ).clone( true );
 		if( mode=='select' ){
-			var url = "http://www.akaneshinsha.co.jp/contents/img/"+book[0].isbn+".jpg";
+			var url = "";
+			if (book[0].info.vol >= 97) {
+				url = "http://www.akaneshinsha.co.jp/wp-content/uploads/2014/03/"+book[0].isbn +".jpg";
+			} else if (book[0].info.vol >= 59 ) {
+				url = "http://www.akaneshinsha.co.jp/wp-content/uploads/2015/02/"+book[0].isbn +".jpg";
+			} else if (book[0].info.vol >= 23 ) {
+				url = "http://www.akaneshinsha.co.jp/wp-content/uploads/2015/02/ZASSI03769-"+(""+book[0].info.year).slice(-2)+("0"+book[0].info.mon).slice(-2)+".jpg";
+			} else if (book[0].info.vol >= 5 ) {
+				url = "http://www.akaneshinsha.co.jp/wp-content/uploads/2015/02/ZASSI04348-"+(""+book[0].info.year).slice(-2)+("0"+book[0].info.mon).slice(-2)+".jpg";
+			} else {
+				url = "http://www.akaneshinsha.co.jp/wp-content/uploads/2015/02/ZASSI03872-"+(""+book[0].info.year).slice(-2)+("0"+book[0].info.mon).slice(-2)+".jpg";
+			}
 			$("#img", tr ).attr( "rowspan", 25 );
 			$("img", tr ).show().attr( "src", url );
 		}else{
